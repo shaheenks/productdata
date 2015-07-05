@@ -1,0 +1,88 @@
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>productdata</title>
+</head>
+
+<body>
+
+{{> navigation}}
+
+{{#if showTemplate 'PRD'}}
+{{> form}}
+{{> productList}}
+{{/if}}
+
+{{#if showTemplate 'ING'}}
+{{> form}}
+{{> ingredientList}}
+{{/if}}
+
+{{#if showTemplate 'PCK'}}
+{{> form}}
+{{> packagingList}}
+{{/if}}
+
+</body>
+
+<template name="form">
+	<div class="container">
+		<hr>
+		<p class="lead">{{setTitle}}</p>
+		<form>
+			{{#each formElements}}
+			<input type="text" class="formData" name="{{value}}" value="{{getValue}}" placeholder="{{item}}">
+			{{/each}}
+			<input type="button" class="postData" value="Push Data">
+			<input type="button" class="reset" value="Reset">
+		</form>
+	</div>
+</template>
+
+<template name="navigation">
+	<div class="container">
+	<ul class="nav nav-tabs">
+		{{#each navli}}
+		<li role="presentation" class="navli {{navActive}}"><a href="#">{{menu}}</a></li>
+		{{/each}}
+	</ul>
+	</div>
+</template>
+
+<template name="productList">
+	<div class="container">
+		<hr>
+		<p class="lead">List of Products</p>
+		
+		<table class="table">
+			{{#each records}}
+				<tr class="product"><td>{{prdName}}</td><td>{{prdForm}}</td><td>{{prdOrigin}}</td><td>{{prdSegment}}</td><td>{{prdShelflife}}</td><td><span class="glyphicon glyphicon-remove delete" aria-hidden="true"></span></td></tr>
+			{{/each}}
+		</table>
+	</div>
+</template>
+
+<template name="ingredientList">
+	<div class="container">
+		<hr>
+		<p class="lead">List of Ingredients</p>
+		
+		<table class="table">
+			{{#each records}}
+				<tr class="ingredient"><td>{{ingType}}</td><td>{{ingOrigin}}</td><td>{{ingDesc}}</td><td>{{ingSpec}}</td><td>{{ingProp}}</td><td><span class="glyphicon glyphicon-remove delete" aria-hidden="true"></span></td></tr>
+			{{/each}}
+		</table>
+	</div>
+</template>
+
+<template name="packagingList">
+	<div class="container">
+		<hr>
+		<p class="lead">List of Packaging</p>
+		
+		<table class="table">
+			{{#each records}}
+				<tr class="package"><td>{{pckType}}</td><td>{{pckSize}}</td><td>{{pckUnit}}</td><td>{{pckPrice}}</td><td><span class="glyphicon glyphicon-remove delete" aria-hidden="true"></span></td></tr>
+			{{/each}}
+		</table>
+	</div>
+</template>
